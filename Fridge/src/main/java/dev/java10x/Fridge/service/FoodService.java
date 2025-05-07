@@ -9,8 +9,8 @@ import java.util.List;
 @Service
 public class FoodService {
 
+    // injeção de dependencia
     private final FoodRepository foodRepository;
-
     public FoodService(FoodRepository foodRepository) {
         this.foodRepository = foodRepository;
     }
@@ -39,7 +39,5 @@ Implementar regras complexas (validações, cálculos).
 Chamar o Repository para persistir dados.
 Evitar colocar lógica no Controller.
 
-O @Service é uma anotação do Spring Framework usada para identificar
-classes que contêm lógica de negócio (regras de aplicação, cálculos, processamento
-de dados) em uma aplicação.
+@Service: Indica que a classe contém lógica de negócio.
 */
