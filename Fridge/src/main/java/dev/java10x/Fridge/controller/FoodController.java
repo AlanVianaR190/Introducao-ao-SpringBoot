@@ -28,6 +28,11 @@ public class FoodController {
         return foodService.save(food);
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        foodService.delete(id);
+    }
+
     /* esse método serve para criar um novo alimento (objeto Food) no
     sistema, é o equivalente a um INSERT no banco de dados, mas via API HTTP.*/
 }
