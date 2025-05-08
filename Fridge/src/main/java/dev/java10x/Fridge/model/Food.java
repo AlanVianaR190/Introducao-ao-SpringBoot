@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "food_table")
+@Entity                                                     // define que a classe é uma entidade JPA (ou seja, uma tabela no banco)
+@Table(name = "food_table")                                 // especifica o nome da tabela no banco (opcional; se não usar, vira food)
 public class Food {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id                                                     // marca o campo como chave primária (identificador único)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)     // define como o ID é gerado (ex.: autoincremento).
     private Long id;
 
     private String name;
@@ -60,14 +60,6 @@ public class Food {
 }
 
 /*
-A representação do dado que será persistido no banco (tabela).
-
-@Entity = "Esta classe é uma tabela no banco de dados".
-
-Use @Table quando precisar customizar o nome da tabela ou adicionar restrições complexas.
-
-@Id: "Este campo é a chave primária".
-
-@GeneratedValue: "Gere o valor dessa PK automaticamente", se não usar você precisará
-definir o ID manualmente (não recomendado para PKs numéricas).
+A classe Food é um modelo que representa um alimento, definindo a estrutura de um "alimento" no sistema
+(como se fosse uma ficha cadastral), cada campo (name, quantity, etc.) vira uma coluna na tabela do banco de dados.
 */
