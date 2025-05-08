@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service                                                                                // marca a classe como um serviço gerenciado pelo Spring (permite injeção de dependência)
 public class FoodService {
 
     // injeção de dependencia
@@ -15,29 +15,30 @@ public class FoodService {
         this.foodRepository = foodRepository;
     }
 
-    // listar
+    /* A injeção de dependência funciona igual no Controller e no Service, mas:
+    O Controller depende do Service.
+    O Service depende do Repository. */
+
     public List<Food> getAll(){
         return foodRepository.findAll();
     }
 
-    // criar
+    /* Retorna todos os alimentos do banco (usa findAll() do Repository). */
+
     public Food save(Food food){
         return foodRepository.save(food);
     }
 
-    // deletar
+    /* Salva um novo alimento no banco (usa save() do Repository). */
+
     public void delete(Long id){
         foodRepository.deleteById(id);
     }
+
+    /* Remove um alimento pelo ID (usa deleteById() do Repository). */
 }
 
 /*
-A camada de lógica de negócio.
-
-Responsabilidades:
-Implementar regras complexas (validações, cálculos).
-Chamar o Repository para persistir dados.
-Evitar colocar lógica no Controller.
-
-@Service: Indica que a classe contém lógica de negócio.
+Esta classe é a camada de serviço da sua aplicação Spring Boot, ela contém
+a lógica de negócio e se comunica com o banco de dados
 */
