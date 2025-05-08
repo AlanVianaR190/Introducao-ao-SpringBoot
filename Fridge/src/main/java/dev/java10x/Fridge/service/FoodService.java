@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service                                                                                // marca a classe como um serviço gerenciado pelo Spring (permite injeção de dependência)
+@Service                                                         // marca a classe como um serviço gerenciado pelo Spring (permite injeção de dependência)
 public class FoodService {
 
     // injeção de dependencia

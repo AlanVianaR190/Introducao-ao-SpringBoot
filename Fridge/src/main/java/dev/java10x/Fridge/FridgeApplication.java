@@ -11,3 +11,5 @@ public class FridgeApplication {
 	}
 
 }
+
+/* Esta é a classe principal que inicia sua aplicação Spring Boot. */
