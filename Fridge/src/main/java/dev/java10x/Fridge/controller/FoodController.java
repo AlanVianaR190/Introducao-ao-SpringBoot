@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/food")
+@RestController                                                                             // define que a classe é um controlador REST (retorna JSON/XML automaticamente)
+@RequestMapping("/food")                                                                    // mapeia a URL base para todos os métodos (ex.: /food)
 public class FoodController {
 
     // injeçao de dependencia
@@ -16,48 +16,33 @@ public class FoodController {
         this.foodService = foodService;
     }
 
-    @GetMapping
+    /* é quando o Spring automaticamente fornece uma instância pronta de FoodService
+    para o FoodController (em vez de você criar manualmente com new).
+    Feito via construtor (melhor prática). */
+
+    @GetMapping                                                                             // mapeia requisições HTTP GET (para listar dados)
     public List<Food> getAll(){
         return foodService.getAll();
     }
-    /* este método será chamado quando a requisição GET for feita, o Spring converte
-    automaticamente essa lista em JSON ou XML, para a resposta HTTP */
 
-    @PostMapping
-    public Food create(@RequestBody Food food){
+    /* Este metodo retorna todos os alimentos (lista em JSON) - Consulta */
+
+    @PostMapping                                                                            // mapeia requisições HTTP POST (para criar dados)
+    public Food create(@RequestBody Food food){                                             // pega o JSON do corpo da requisição e transforma em um objeto Java (Food)
         return foodService.save(food);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
+    /* Este metodo cria um novo alimento (recebe JSON no corpo) - Criação */
+
+    @DeleteMapping("/{id}")                                                                 // mapeia requisições HTTP DELETE (para remover dados)
+    public void delete(@PathVariable Long id){                                              // pega um valor da URL (ex.: /food/1 → id = 1).
         foodService.delete(id);
     }
 
-    /* esse método serve para criar um novo alimento (objeto Food) no
-    sistema, é o equivalente a um INSERT no banco de dados, mas via API HTTP.*/
+    /* Este metodo remove um alimento pelo ID (pega da URL) - Remoção */
 }
 
 /*
-A camada que recebe as requisições HTTP e devolve as respostas (REST API).
-
-Responsabilidades:
-Validar entradas (DTOs).
-Chamar a camada Service e converter respostas em JSON/XML.
-
-@RestController para APIs RESTful que retornam dados (JSON/XML).
-
-@GetMapping: Mapeia requisições GET para um método, ele define
-a URL (endpoint) que o método irá atender e pode ser aplicado em nível de classe ou método.
-
-INJEÇÃO DE DEPENDÊNCIA (DI) NO SPRING:
-É quando o Spring AUTOMATICAMENTE fornece uma instância pronta em vez de você criar manualmente.
-
-Prefira injeção por construtor na maioria dos casos. É mais seguro, testável e alinhado
-com boas práticas de design imutável. O @Autowired em campos deve ser
-evitado, e setters só devem ser usados quando realmente necessários.
-
-@PostMapping é uma anotação do Spring Framework usada para mapear requisições HTTP POST em
-um método específico
-
-@RequestBody é usado para ler dados do corpo da requisição e convertê-los em objetos Java.
+Esta classe é o controlador da sua API REST. Ele recebe requisições
+HTTP (GET, POST, DELETE) e as encaminha para o FoodService (que faz a lógica de negócio).
 */
